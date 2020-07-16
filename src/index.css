@@ -1,13 +1,94 @@
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  display: flex;
+  margin: auto;
+  padding: 10%;
+  flex-wrap: wrap;
+}
+body{
+  background-image:url("https://ae01.alicdn.com/kf/Haba8f9b4bd974f70b74279aee6d7d732U.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.form{
+  margin: auto;
+  margin-top: 10px;
+  /* flex-basis: 30%; */
+  padding:5% 10%;
+}
+
+.form,.users{
+  border:1px solid #2f2f2f;
+  border-radius: 40px;
+  background-color: rgba(11, 12, 12, 0.753);
+  align-items: center;
+  text-align: center;
+  
+}
+.users {
+  width: 100px;
+  padding:5% 2%;
+  word-break: break-all;
+  flex-basis: 100%;
+  margin: auto;
+  margin: 10px 0 0 10px;
+  color: white;
+}
+.users table {
+  text-align: center;
+  margin: auto;
+}
+.users table thead tr th {
+  font-size: 18px;
+  border-bottom: 1px solid white;
+}
+.users table tbody tr td {
+  
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+h2{
+  color: white;
+}
+.form > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form > form > input {
+  margin-bottom: 1em;
+  padding: 8px 15px;
+  border: solid 1px #EED0FD;;
+  box-shadow: 0 0 10px 0px #EED0FD;
+  background-color: rgb(99, 97, 97, .5);
+  border-radius: 50px;
+  outline: none;
+  color: #EED0FD;;
+}
+.form input[type="submit"]{
+  cursor:pointer;
+}
+.form input[type="submit"]:active{
+  background-color: #6a5b72d7;
+  transition: all .5s ;
 }

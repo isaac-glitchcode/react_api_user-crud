@@ -6,40 +6,50 @@ export default class Form extends Component {
     constructor(props){
         super(props);
         this.state={
-            users : []
+          formData:{}
         }
     }
     
-    addUser = (event) => {
+    register = (event) => {
         event.preventDefault();
-        // var data = {username: 'example'};
-        
-        fetch("https://jsonplaceholder.typicode.com/posts", {
+    
+        fetch(" https://academlo-api-users.herokuapp.com/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(this.state)
+          body: JSON.stringify(this.state.formData)
         })  
-          .then(res => res.json())
-          .then(response => console.log('Success:', response))
-          .catch(error => console.log(error));
+          .then(response => response.json())
+          .then(data => {
+                
+                this.props.getDataFn();
+          } )
+          .catch(error => console.log(error)); 
     };
     
-      handleInput = event => {
-        this.setState({ [event.target.name]: event.target.value });
+    setInputValue = event => {
+        event.preventDefault();
+        this.setState({ 
+          formData: {
+            ...this.state.formData,
+            [event.target.name]: event.target.value 
+          }
+        });
         console.log(this.state)
-      };
-  render() {
-    return (
-        <div>
-            <form onInput={this.handleInput} onSubmit={this.addUser}>
-                <input name="users" type="text" placeholder="Name" />
-                <input type="submit" />
-            </form>
-            
+    };
 
-        </div>
-    );
+    render() {
+        return (
+            <div className="form">
+                <form onSubmit={this.register} onInput={this.setInputValue} >
+                    <input name="name"     type="text"     placeholder="Name(s)" />
+                    <input name="lastname" type="text"     placeholder="Lastname" />
+                    <input name="email"    type="email"    placeholder="Email" />
+                    <input name="password" type="password" placeholder="Password" />
+                    <input type="submit" />
+                </form> 
+             </div> 
+        );
   }
 }
