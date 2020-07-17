@@ -21,7 +21,7 @@ export default class Form extends Component {
           body: JSON.stringify(this.state.formData)
         })  
           .then(response => response.json())
-          .then(data => {
+          .then(() => {
                 
                 this.props.getDataFn();
           } )
