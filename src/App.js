@@ -18,14 +18,12 @@ class App extends React.Component {
   getData = () =>{
     fetch("https://academlo-api-users.herokuapp.com/users")
     .then(response => response.json())
-    .then(results => this.setState({ users: results.data}))
+    .then(data => this.setState({ users: data.data}))
     .catch(error => console.log(error));
     console.log(this.state)
   }
 
-  remove(event, i) {
-    let id = event+1;
-    let index = i;
+  alertDelete = id =>{
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -36,8 +34,14 @@ class App extends React.Component {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if(result.value){
-        fetch("https://academlo-api-users.herokuapp.com/user/"+id,{
-          method: 'DELETE',
+       this._delete(id);
+      }
+    })
+  }
+
+  _delete = id => {
+    fetch('https://academlo-api-users.herokuapp.com/user/' +id,{
+        method: 'DELETE'
     })
     .then(() => {
         Swal.fire(
@@ -45,19 +49,16 @@ class App extends React.Component {
           'The user has been deleted.',
           'success'
         );
-        let users = this.state.users;
-        users.splice(index,1);
-        this.setState({users})
+        this.getData()
     })
     .catch(error => console.error(error));
     console.log(this.state.users)
-      }
-    })
   }
-  
+
   render() {
-    const users = this.state.users.map((user,index)=>{
-      return <div className="users col-md-4" key={index}> 
+    console.log(this.state.users)
+    const users = this.state.users.map((user)=>{
+      return <div className="users col-md-4" key={user.id}> 
                 <div className="card mt-4">
                   <div className="card-title text-center">
                     <h2>User</h2>
@@ -70,8 +71,8 @@ class App extends React.Component {
                     <div >
                       <button
                         className="btn btn-danger"
-                        onClick={this.remove.bind(this,index)}>
-                          {console.log(index)}
+                        onClick={()=>this.alertDelete(user.id)}>
+                          {console.log(user.id)}
                         Delete
                       </button>
                     </div>
