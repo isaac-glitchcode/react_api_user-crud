@@ -107,7 +107,6 @@ class App extends React.Component {
         [event.target.name]: event.target.value 
       }
     });
-    // console.log(this.state)
 };
 
   render() {
