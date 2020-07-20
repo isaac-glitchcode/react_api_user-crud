@@ -62,21 +62,17 @@ class App extends React.Component {
     .catch(error => console.error(error));
   }
 
-  editUser = (user) => {
-    const id = user.id;
-    this.state.users.filter((user) => {
-      if(user.id === id){
-        return this.setState({
-          temporal: {
-            id:user.id,
-            name: user.name,
-            lastname:user.lastname,
-            email: user.email,
-            password:user.password
-        }
-      });  
+ editUser = (user) => {
+    this.setState({
+      temporal: {
+        id:user.id,
+        name: user.name,
+        lastname:user.lastname,
+        email: user.email,
+        password:user.password
       }
-    })
+    });
+
     this.setState({editForm:!this.state.editForm})
   }
 
