@@ -73,7 +73,7 @@ class App extends React.Component {
       }
     });
 
-    this.setState({editForm:!this.state.editForm})
+    this.setState({editForm:true})
   }
 
   updateUser = (event) => {
